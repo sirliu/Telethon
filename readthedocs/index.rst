@@ -1,5 +1,5 @@
 ========================
-Telethon's Documentation
+Telethon 使用手册中文文档
 ========================
 
 .. code-block:: python
@@ -17,9 +17,9 @@ Telethon's Documentation
       client.run_until_disconnected()
 
 
-* Are you new here? Jump straight into :ref:`installation`!
-* Looking for the method reference? See :ref:`client-ref`.
-* Did you upgrade the library? Please read :ref:`changelog`.
+* 你是新来的吗?? 直接跳到 :ref:`installation`!
+* 寻找方法引用? 查看 :ref:`client-ref`.
+* 你更新库了吗? 请阅读 :ref:`changelog`.
 * Used Telethon before v1.0? See :ref:`compatibility-and-convenience`.
 * Coming from Bot API or want to create new bots? See :ref:`botapi`.
 * Need the full API reference? https://tl.telethon.dev/.
