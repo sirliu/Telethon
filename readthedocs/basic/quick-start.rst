@@ -1,49 +1,45 @@
 ===========
-Quick-Start
+快速开始
 ===========
 
-Let's see a longer example to learn some of the methods that the library
-has to offer. These are known as "friendly methods", and you should always
-use these if possible.
+让我们来看一个长代码例子，以学习telethon库提供的几种方法。他们以友好著称，如有需要你将经常使用他们。
 
 .. code-block:: python
 
     from telethon import TelegramClient
 
-    # Remember to use your own values from my.telegram.org!
+    # 请改成你自己的!
     api_id = 12345
     api_hash = '0123456789abcdef0123456789abcdef'
     client = TelegramClient('anon', api_id, api_hash)
 
     async def main():
-        # Getting information about yourself
+        # 拉取你的个人信息
         me = await client.get_me()
 
-        # "me" is an User object. You can pretty-print
-        # any Telegram object with the "stringify" method:
+        # "me" 是一个 User 对象. 你可以漂亮的打印任何具有"stringify"方法的Telegram对象:
         print(me.stringify())
 
-        # When you print something, you see a representation of it.
-        # You can access all attributes of Telegram objects with
-        # the dot operator. For example, to get the username:
+        # 当你打印一些东西时, you see a representation of it.
+        # 您可以使用点操作符访问Telegram对象的所有属性. 比如, 获取用户名:
         username = me.username
         print(username)
         print(me.phone)
 
-        # You can print all the dialogs/conversations that you are part of:
+        # 你可以打印所有你参与的对话:
         async for dialog in client.iter_dialogs():
             print(dialog.name, 'has ID', dialog.id)
 
-        # You can send messages to yourself...
+        # 你可以给自己发信息...
         await client.send_message('me', 'Hello, myself!')
-        # ...to some chat ID
+        # ...到某个聊天ID
         await client.send_message(-100123456, 'Hello, group!')
-        # ...to your contacts
+        # ...到你的联系人
         await client.send_message('+34600123123', 'Hello, friend!')
-        # ...or even to any username
+        # ...甚至是某个账户
         await client.send_message('TelethonChat', 'Hello, Telethon!')
 
-        # You can, of course, use markdown in your messages:
+        # 当然，您可以在消息中使用markdown:
         message = await client.send_message(
             'me',
             'This message has **bold**, `code`, __italics__ and '
@@ -51,21 +47,21 @@ use these if possible.
             link_preview=False
         )
 
-        # Sending a message returns the sent message object, which you can use
+        # 发送消息将返回您的已发送消息对象
         print(message.raw_text)
 
-        # You can reply to messages directly if you have a message object
+        # 如果有消息对象，可以直接回复消息
         await message.reply('Cool!')
 
-        # Or send files, songs, documents, albums...
+        # 或者发送文件、歌曲、文档、相册...
         await client.send_file('me', '/home/me/Pictures/holidays.jpg')
 
-        # You can print the message history of any chat:
+        #您可以打印任何聊天的消息历史:
         async for message in client.iter_messages('me'):
             print(message.id, message.text)
 
-            # You can download media from messages, too!
-            # The method will return the path where the file was saved.
+            # 你也可以从信息中下载媒体!
+            # 该方法将返回保存文件的路径.
             if message.photo:
                 path = await message.download_media()
                 print('File saved to', path)  # printed after download is done
@@ -74,20 +70,17 @@ use these if possible.
         client.loop.run_until_complete(main())
 
 
-Here, we show how to sign in, get information about yourself, send
-messages, files, getting chats, printing messages, and downloading
-files.
+截止到这里，我们展示了如何登录，获取关于你自己的信息，发送
+消息、文件、聊天、打印消息和下载文件。
 
-You should make sure that you understand what the code shown here
-does, take note on how methods are called and used and so on before
-proceeding. We will see all the available methods later on.
+您应该确保理解这里展示的代码，在自己开始写代码之前，你要注意如何调用各种方法等等。
+稍后我们将看到所有可用的方法。
 
 .. important::
 
-    Note that Telethon is an asynchronous library, and as such, you should
-    get used to it and learn a bit of basic `asyncio`. This will help a lot.
-    As a quick start, this means you generally want to write all your code
-    inside some ``async def`` like so:
+    请注意，Telethon是一个异步库，因此，你应该这样做习惯它，
+    并学习一点基本的 `asyncio`知识。这会很有帮助的。
+    作为一个快速的开始，这意味着你通常需要在' ' async def ' '内写你的代码，像这样:
 
     .. code-block:: python
 
@@ -106,6 +99,5 @@ proceeding. We will see all the available methods later on.
         with client:
             client.loop.run_until_complete(main())
 
-    After you understand this, you may use the ``telethon.sync`` hack if you
-    want do so (see :ref:`compatibility-and-convenience`), but note you may
-    run into other issues (iPython, Anaconda, etc. have some issues with it).
+    理解了这些之后，你可以使用“telethon.sync”，如果你希望这样做(参见:ref: ' compatibility-and-convenience ')，
+    但是请注意可以这样做 遇到其他问题(如iPython、Anaconda等)。
