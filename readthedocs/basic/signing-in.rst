@@ -62,10 +62,6 @@
 并将其赋值给变量client，现在我们可以使用client变量来做我们想做的事，比如给我们自己发送消息。
 
 .. 注意::
-    Since Telethon is an asynchronous library, you need to ``await``
-    coroutine functions to have them run (or otherwise, run the loop
-    until they are complete). In this tiny example, we don't bother
-    making an ``async def main()``.
     鉴于Telethon是一个异步库，你需要``等待``协程函数运行返回结果，不然，你需要使用循环结构来等待直到返回消息。在这个小小的例子中，我们不急着使用
     ``async def main()``结构。
     
